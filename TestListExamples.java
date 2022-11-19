@@ -21,7 +21,7 @@ class Checker implements StringChecker {
 
 
 public class TestListExamples {
-    @Test
+    @Test(timeout = 100)
     public void filterTest() {
         List<String> input = new ArrayList<>();
         input.add("pass");
@@ -36,7 +36,7 @@ public class TestListExamples {
         assertEquals(output, ListExamples.filter(input, check));
     }
 
-    @Test
+    @Test(timeout = 100)
     public void mergeTest() {
         List<String> input1 = new ArrayList<>();
         input1.add("a");
