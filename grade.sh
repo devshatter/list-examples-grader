@@ -20,20 +20,21 @@ then
 
     echo "Compiled"
     java -cp $CP org.junit.runner.JUnitCore TestListExamples > output.txt
-    grep "failure" output.txt > result.txt
-    score="$(grep 'failure' output.txt)"
-    cat result.txt
     if [ $? -eq 0 ]
     then
-        echo "100% -> Pass"
+        echo "100% of tests passed -> Pass"
         exit
-    elif [ "$score" = "There were 2 failures:" ]
+    fi
+    grep "failure" output.txt > result.txt
+    score="$(grep 'failure' output.txt)"
+    
+    if [ "$score" = "There were 2 failures:" ]
     then
-        echo "0% -> Fail"
+        echo "0% of tests passed- > Fail"
         exit
     elif [ "$score" = "There was 1 failure:" ]
     then
-        echo "50% -> Fail"
+        echo "50% of tests passed -> Fail"
     fi
     exit
 fi
